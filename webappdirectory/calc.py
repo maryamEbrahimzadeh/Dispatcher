@@ -16,8 +16,9 @@ def getnum():
     text = request.form['textarea']
     num = text.split()
     ip = os.environ['add_ip']
-    requests.post('http://' + ip + ':3000', json={"param1": num[0],
-                                                  "param2": num[2]})
+    r = requests.post('http://' + ip + ':3000/add', json={"param1": num[0],
+                                                          "param2": num[2]})
+    return r.text
 
 
 if __name__ == "__main__":
