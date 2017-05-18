@@ -1,5 +1,6 @@
 from flask import Flask,render_template,request
-import requests
+import requests,os
+
 
 app = Flask(__name__)
 
@@ -11,19 +12,13 @@ def calc():
 
         'index.html')
 
-@app.route('/<string:ip>',methods=['POST'])
+@app.route('/',methods=['POST'])
 
 def getnum():
 	text = request.form['textarea']
 	num = text.split()
-	if num[1]=="+" :
-		r = requests.post(ip + ':3000',json={"param1": num[0],"param2" : num[2]})
-	elif  num[1]=="-"
-		r = requests.post(ip + ':3000',json={"param1": num[0],"param2" : num[2]})
-	elif  num[1]=="/"
-		r = requests.post(ip + ':3000',json={"param1": num[0],"param2" : num[2]})
-	elif  num[1]=="*"
-		r = requests.post(ip + ':3000',json={"param1": num[0],"param2" : num[2]})
+	ip = os.environ['add_ip']
+	r = requests.post(ip + ':3000',json={"param1": num[0],"param2" : num[2]})
 	
 
 
