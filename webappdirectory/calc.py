@@ -15,9 +15,19 @@ def calc():
 def getnum():
     text = request.form['textarea']
     num = text.split()
-    ip = os.environ['add_ip']
-    r = requests.post('http://' + ip + ':3000/add', json={"param1": num[0],
-                                                          "param2": num[2]})
+    ipadd = os.environ['add_ip']
+	ipsub = os.environ['sub_ip']
+	ipmul = os.environ['mul_ip']
+	ipdiv = os.environ['div_ip']
+
+	if num[1]=="+" :
+        	r = requests.post('http://' + ipadd + ':3000/add',json={"param1": num[0],"param2" : num[2]})
+	if num[1]=="-" :
+        	r = requests.post('http://' + ipsub + ':3000/sub',json={"param1": num[0],"param2" : num[2]})
+	if num[1]=="*" :
+        	r = requests.post('http://' + ipmul + ':3000/mul',json={"param1": num[0],"param2" : num[2]})
+	if num[1]==/" :
+        	r = requests.post('http://' + ipdiv + ':3000/div',json={"param1": num[0],"param2" : num[2]})
     return r.text
 
 
